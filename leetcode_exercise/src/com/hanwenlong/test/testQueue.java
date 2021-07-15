@@ -23,8 +23,12 @@ public class testQueue {
 
         String a = "a";
 
-        System.out.println(a.substring(0,0)+"*"+a.substring(0,1-1));
+        //System.out.println(a.substring(0,0)+"*"+a.substring(0,1-1));
 
+
+        for (char i='a';i<='z';i++) {
+            System.out.println(i);
+        }
     }
 
 }

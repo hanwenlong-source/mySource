@@ -29,24 +29,31 @@ public class LeetCode_127 {
         queue.offer(beginWord);
         set.add(beginWord);
 
+        List<String> endWordList = getEndWordList(endWord);
+
         while (!queue.isEmpty()) {
             String chars1 = queue.poll();
-            int size = chars1.length();
+            System.out.println("------------");
 
-            List<String> wordList2 = getWordList(chars1,size);
-            ok:for (int j=0;j<wordList.size();j++) {
+            for (int j=0;j<wordList.size();j++) {
                 String word = wordList.get(j);
-//                if (word.equals(endWord)) {
-//                    break;
-//                }
-                for (int i = 1; i<=size; i++) {
-                    String s = word.substring(0, i-1) + "*" + word.substring(i, size);
-                    if (wordList2.contains(s)) {
+                for (int i = 1; i<=chars1.length(); i++) {
+                    String s = word.substring(0, i-1) + "*" + word.substring(i, chars1.length());
+
+//                    if (endWordList.contains(s)) {
+//                        System.out.println("--"+word);
+//                        char[] chars = s.toCharArray();
+//                        for (char k='a';k<='z';k++) {
+//                            chars[i-1] = k;
+//                        }
+//                    }
+
+                    if (!set.contains(word)&&wordList.contains(word)) {
                         System.out.println(word);
                         queue.offer(word);
-                        wordList.remove(j);
                         set.add(word);
                     }
+
                 }
             }
 
@@ -57,11 +64,11 @@ public class LeetCode_127 {
         return step;
     }
 
-    private List<String> getWordList(String chars1, int size) {
+    private List<String> getEndWordList(String chars1) {
 
         List<String> list = new ArrayList<>();
-        for (int i=1; i<=size; i++) {
-            String s = chars1.substring(0, i-1) + "*" + chars1.substring(i, size);
+        for (int i=1; i<=chars1.length(); i++) {
+            String s = chars1.substring(0, i-1) + "*" + chars1.substring(i, chars1.length());
             //System.out.println(s);
             list.add(s);
         }
